@@ -17,7 +17,7 @@ def choose():
 
 # Выбор случайного слова с файла
 def get_word():
-    with open ("C:\\Users\\jevge\\OneDrive\\Desktop\\projects\\gamewords.txt", "r", encoding="utf-8") as f:
+    with open ("gamewords.txt", "r", encoding="utf-8") as f:
         word = r.choice(f.read().split()).upper()
         return word
 
