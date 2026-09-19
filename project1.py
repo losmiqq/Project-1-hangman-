@@ -109,7 +109,10 @@ def is_valid_letter(guessed_letters, missed_letters):
     while True:
         user_input = input("Введите букву: ").upper()
 
-        if user_input not in "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ":
+        if user_input not in ["А", "Б", "В", "Г", "Д", "Е", "Ё", "Ж", "З", "И", 
+                              "Й", "К", "Л", "М", "Н", "О", "П", "Р", "С", "Т", "У", 
+                              "Ф", "Х", "Ц", "Ч", "Ш", "Щ", "Ъ", "Ы", "Ь", "Э", "Ю", "Я"
+                              ]:
             print("Вы ввели не букву!")
         elif user_input in guessed_letters:
             print("Вы уже называли эту букву!")
