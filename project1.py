@@ -17,9 +17,11 @@ def choose():
 
 # Выбор случайного слова с файла
 def get_word():
-    with open ("gamewords.txt", "r", encoding="utf-8") as f:
-        word = r.choice(f.read().split()).upper()
-        return word
+    while True:
+        with open ("gamewords.txt", "r", encoding="utf-8") as f:
+            word = r.choice(f.read().split()).upper()
+            if len(word)>4:
+                return word
 
 
 # Функция получения текущего состояния
@@ -107,7 +109,7 @@ def word_update(word, guessed_letters):
 # Проверка на валидность буквы
 def is_valid_letter(guessed_letters, missed_letters):
     while True:
-        user_input = input("Введите букву: ").upper()
+        user_input = input("Введите кириллическую букву: ").upper()
 
         if user_input not in ["А", "Б", "В", "Г", "Д", "Е", "Ё", "Ж", "З", "И", 
                               "Й", "К", "Л", "М", "Н", "О", "П", "Р", "С", "Т", "У", 
