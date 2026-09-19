@@ -167,9 +167,10 @@ def play(word):
                 print("Вы проиграли! Загаданное слово было:", word)
                 break
 
-while True:
-    if choose():
-        play(get_word())
-    else:
-        print("До свидания!")
-        break
+if __name__ == "__main__":
+    while True:
+        if choose():
+            play(get_word())
+        else:
+            print("До свидания!")
+            break
