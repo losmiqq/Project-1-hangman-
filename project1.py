@@ -1,4 +1,9 @@
 import random as r
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent
+file_path = BASE_DIR / "gamewords.txt" 
+
 
 # Запрос юзера продолжить/закончить игру
 def choose():
@@ -18,7 +23,7 @@ def choose():
 # Выбор случайного слова с файла
 def get_word():
     while True:
-        with open ("gamewords.txt", "r", encoding="utf-8") as f:
+        with open (file_path, encoding="utf-8") as f:
             word = r.choice(f.read().split()).upper()
             if len(word)>4:
                 return word
