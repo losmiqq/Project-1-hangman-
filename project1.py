@@ -113,7 +113,7 @@ def is_valid_letter(guessed_letters, missed_letters):
                               "Й", "К", "Л", "М", "Н", "О", "П", "Р", "С", "Т", "У", 
                               "Ф", "Х", "Ц", "Ч", "Ш", "Щ", "Ъ", "Ы", "Ь", "Э", "Ю", "Я"
                               ]:
-            print("Вы ввели не букву!")
+            print("Вы ввели не кириллическую букву!")
         elif user_input in guessed_letters:
             print("Вы уже называли эту букву!")
         elif user_input in missed_letters:
@@ -128,6 +128,7 @@ def play(word):
     guessed_letters = []
     missed_letters = []
     tries = 6
+    misstakes = 0
 
     print("Добро пожаловать в игру 'Виселица'!")
 
@@ -135,7 +136,7 @@ def play(word):
     while not guessed and tries > 0:
         print(display_hangman(tries))
         print(word_update(word, guessed_letters))
-        print(f"Попыток осталось: {tries}")
+        print(f"Кол-во ошибок: {misstakes}")
         user_input = is_valid_letter(guessed_letters, missed_letters)
 
         if user_input in word:
@@ -143,17 +144,19 @@ def play(word):
             print("Верно! Буква", user_input, "есть в слове.")
             if word_update(word, guessed_letters).count("_") == 0:
                 guessed = True
-                print("Поздравляем, вы угадали слово! Вы победили!")
+                print("Поздравляем, вы угадали слово! Загаданное слово было:", word)
                 break
 
         else:
             if user_input not in missed_letters:
                 tries -= 1
+                misstakes += 1
                 print("Буквы", user_input, "нет в слове.")
                 missed_letters.append(user_input)
             else:
                 print("Вы уже называли эту букву, ее нету в слове")
             if tries == 0:
+                print(display_hangman(tries))
                 print("Вы проиграли! Загаданное слово было:", word)
                 break
 
