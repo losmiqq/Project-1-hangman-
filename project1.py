@@ -6,7 +6,7 @@ file_path = BASE_DIR / "gamewords.txt"
 
 
 # Запрос юзера продолжить/закончить игру
-def choose():
+def choose() -> bool:
     while True:
         user_choice = input("Начать новую игру/Выйти (Start/Exit): ")
         if user_choice.lower() in ["start", "s", "старт"]:
@@ -21,29 +21,27 @@ def choose():
 
 
 # Выбор случайного слова с файла
-def get_word():
+def get_word() -> str:
+    rus_letters = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"
     try:
-        while True:
-            rus_letters = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"
-
-            with open (file_path, encoding="utf-8") as f:
-                words = f.read().split()
-                if not words:
-                    print("Файл оказался пустым(")
-                    return None
+        with open (file_path, encoding="utf-8") as f:
+            words = f.read().split()
+            if not words:
+                print("Файл оказался пустым(")
+                return None
                 
-                valid_words = []
+            valid_words = []
 
-                for word in words:
-                    word = word.upper()
-                    if len(word) > 4 and all(letter in rus_letters for letter in word):
-                        valid_words.append(word)
+            for word in words:
+                word = word.upper()
+                if len(word) > 4 and all(letter in rus_letters for letter in word):
+                    valid_words.append(word)
 
-                if not valid_words:
-                    print("Нет подходящих слов написанных кириллицей")
-                    return None
+            if not valid_words:
+                print("Нет подходящих слов написанных кириллицей")
+                return None
 
-                return r.choice(valid_words)
+            return r.choice(valid_words)
             
     except FileNotFoundError:
         print("Файл не найден")
@@ -127,13 +125,13 @@ def display_hangman(tries: int):
 
 
 # Состояние загаданного слова
-def word_update(word: str, guessed_letters: list):
+def word_update(word: str, guessed_letters: list) -> str:
     result = "".join([i if i in guessed_letters else '_' for i in word])
     return result
 
 
 # Проверка на валидность буквы
-def is_valid_letter(guessed_letters: list, missed_letters: list):
+def is_valid_letter(guessed_letters: list, missed_letters: list) -> str:
     while True:
         user_input = input("Введите кириллическую букву: ").upper()
 
@@ -156,7 +154,7 @@ def play(word: str):
     guessed_letters = []
     missed_letters = []
     tries = 6
-    misstakes = 0
+    mistakes = 0
 
     print("Добро пожаловать в игру 'Виселица'!")
 
@@ -164,7 +162,7 @@ def play(word: str):
     while not guessed and tries > 0:
         print(display_hangman(tries))
         print(word_update(word, guessed_letters))
-        print(f"Кол-во ошибок: {misstakes}")
+        print(f"Кол-во ошибок: {mistakes}")
         user_input = is_valid_letter(guessed_letters, missed_letters)
 
         if user_input in word:
@@ -178,12 +176,12 @@ def play(word: str):
         else:
             if user_input not in missed_letters:
                 tries -= 1
-                misstakes += 1
+                mistakes += 1
                 print("Буквы", user_input, "нет в слове.")
                 missed_letters.append(user_input)
         if tries == 0:
             print(display_hangman(tries))
-            print(f"Кол-во ошибок: {misstakes}")
+            print(f"Кол-во ошибок: {mistakes}")
             print("Вы проиграли! Загаданное слово было:", word)
             break
 
