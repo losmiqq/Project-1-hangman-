@@ -174,11 +174,9 @@ def play(word: str):
                 break
 
         else:
-            if user_input not in missed_letters:
-                tries -= 1
-                mistakes += 1
-                print("Буквы", user_input, "нет в слове.")
-                missed_letters.append(user_input)
+            tries -= 1
+            mistakes += 1
+            missed_letters.append(user_input)
         if tries == 0:
             print(display_hangman(tries))
             print(f"Кол-во ошибок: {mistakes}")
