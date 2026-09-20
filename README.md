@@ -22,14 +22,19 @@ The player has 6 attempts to guess the word.
 ## Project Structure
 
 project/
-├── project1.py
-├── gamewords.txt
-└── README.md
+├── `project1.py`
+├── `gamewords.txt`
+└── `README.md`
 
-* project1.py — main game logic
-* gamewords.txt — list of words used in the game
-* README.md — project documentation
+* `project1.py` — main game logic
+* `gamewords.txt` — list of words used in the game
+* `README.md` — project documentation
 
+
+## Requirements
+
+* Python 3.14
+* No external libraries are required
 
 ## How to Run
 
@@ -55,6 +60,6 @@ The game ends when:
 
 The program handles cases where:
 
-* 'gamewords.txt' does not exist;
+* `gamewords.txt` does not exist;
 * the word file is empty;
 * the file does not contain suitable words.
