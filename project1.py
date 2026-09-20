@@ -174,6 +174,7 @@ def play(word):
                 print("Вы уже называли эту букву, ее нету в слове")
             if tries == 0:
                 print(display_hangman(tries))
+                print(f"Кол-во ошибок: {misstakes}")
                 print("Вы проиграли! Загаданное слово было:", word)
                 break
 
@@ -182,7 +183,7 @@ if __name__ == "__main__":
         if choose():
             word = get_word()
             if word is not None:
-                play(get_word())
+                play(word)
         else:
             print("До свидания!")
             break
