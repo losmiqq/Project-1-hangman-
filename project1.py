@@ -49,7 +49,7 @@ def get_word() -> str:
 
 
 # Функция получения текущего состояния
-def display_hangman(tries: int):
+def display_hangman(tries: int) -> str:
     stages = [  # финальное состояние: голова, торс, обе руки, обе ноги
                 '''
                    --------
