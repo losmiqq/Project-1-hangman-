@@ -51,7 +51,7 @@ def get_word():
 
 
 # Функция получения текущего состояния
-def display_hangman(tries):
+def display_hangman(tries: int):
     stages = [  # финальное состояние: голова, торс, обе руки, обе ноги
                 '''
                    --------
@@ -127,13 +127,13 @@ def display_hangman(tries):
 
 
 # Состояние загаданного слова
-def word_update(word, guessed_letters):
+def word_update(word: str, guessed_letters: list):
     result = "".join([i if i in guessed_letters else '_' for i in word])
     return result
 
 
 # Проверка на валидность буквы
-def is_valid_letter(guessed_letters, missed_letters):
+def is_valid_letter(guessed_letters: list, missed_letters: list):
     while True:
         user_input = input("Введите кириллическую букву: ").upper()
 
@@ -151,7 +151,7 @@ def is_valid_letter(guessed_letters, missed_letters):
 
 
 # Функционал игры
-def play(word):
+def play(word: str):
     guessed = False
     guessed_letters = []
     missed_letters = []
@@ -181,13 +181,11 @@ def play(word):
                 misstakes += 1
                 print("Буквы", user_input, "нет в слове.")
                 missed_letters.append(user_input)
-            else:
-                print("Вы уже называли эту букву, ее нету в слове")
-            if tries == 0:
-                print(display_hangman(tries))
-                print(f"Кол-во ошибок: {misstakes}")
-                print("Вы проиграли! Загаданное слово было:", word)
-                break
+        if tries == 0:
+            print(display_hangman(tries))
+            print(f"Кол-во ошибок: {misstakes}")
+            print("Вы проиграли! Загаданное слово было:", word)
+            break
 
 if __name__ == "__main__":
     while True:
