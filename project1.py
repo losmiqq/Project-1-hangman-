@@ -8,10 +8,10 @@ file_path = BASE_DIR / "gamewords.txt"
 # Запрос юзера продолжить/закончить игру
 def choose():
     while True:
-        choose = input("Начать новую игру/Выйти (Start/Exit): ")
-        if choose.lower() in ["start", "s", "старт"]:
+        user_choice = input("Начать новую игру/Выйти (Start/Exit): ")
+        if user_choice.lower() in ["start", "s", "старт"]:
             return True
-        elif choose.lower() in ["exit", "e", "выход"]:
+        elif user_choice.lower() in ["exit", "e", "выход"]:
             return False
         else:
             print("Вы ввели неправильный ответ")
@@ -22,11 +22,21 @@ def choose():
 
 # Выбор случайного слова с файла
 def get_word():
-    while True:
-        with open (file_path, encoding="utf-8") as f:
-            word = r.choice(f.read().split()).upper()
-            if len(word)>4:
-                return word
+    try:
+        while True:
+            with open (file_path, encoding="utf-8") as f:
+                words = f.read().split()
+                if not words:
+                    print("Файл оказался пустым(")
+                    return None
+
+                word = r.choice(words).upper()
+
+                if len(word)>4:
+                    return word
+    except FileNotFoundError:
+        print("Файл не найден")
+        return None
 
 
 # Функция получения текущего состояния
@@ -170,7 +180,9 @@ def play(word):
 if __name__ == "__main__":
     while True:
         if choose():
-            play(get_word())
+            word = get_word()
+            if word is not None:
+                play(get_word())
         else:
             print("До свидания!")
             break
