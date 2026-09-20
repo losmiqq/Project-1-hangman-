@@ -24,16 +24,27 @@ def choose():
 def get_word():
     try:
         while True:
+            rus_letters = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"
+
             with open (file_path, encoding="utf-8") as f:
                 words = f.read().split()
                 if not words:
                     print("Файл оказался пустым(")
                     return None
+                
+                valid_words = []
 
-                word = r.choice(words).upper()
+                for word in words:
+                    word = word.upper()
+                    if len(word) > 4 and all(letter in rus_letters for letter in word):
+                        valid_words.append(word)
 
-                if len(word)>4:
-                    return word
+                if not valid_words:
+                    print("Нет подходящих слов написанных кириллицей")
+                    return None
+
+                return r.choice(valid_words)
+            
     except FileNotFoundError:
         print("Файл не найден")
         return None
