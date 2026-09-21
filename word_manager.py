@@ -7,14 +7,14 @@ BASE_DIR = Path(__file__).resolve().parent
 file_path = BASE_DIR / "gamewords.txt"
 
 
-def get_word():
+def get_word() -> None | str:
     try:
         with open (file_path, encoding="utf-8") as f:
             words = f.read().split()
             if not words:
                 print("Файл оказался пустым(")
                 return None
-                
+
             valid_words = []
 
             for word in words:
@@ -27,7 +27,7 @@ def get_word():
                 return None
 
             return r.choice(valid_words)
-            
+
     except FileNotFoundError:
         print("Файл не найден")
         return None
