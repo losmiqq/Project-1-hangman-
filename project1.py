@@ -4,6 +4,13 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent
 file_path = BASE_DIR / "gamewords.txt" 
 
+alphabet_list = ["А", "Б", "В", "Г", "Д", "Е", "Ё", "Ж", "З", "И", 
+                 "Й", "К", "Л", "М", "Н", "О", "П", "Р", "С", "Т", "У", 
+                 "Ф", "Х", "Ц", "Ч", "Ш", "Щ", "Ъ", "Ы", "Ь", "Э", "Ю", "Я"
+                 ]
+
+rus_letters = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"
+
 
 # Запрос юзера продолжить/закончить игру
 def choose() -> bool:
@@ -22,7 +29,6 @@ def choose() -> bool:
 
 # Выбор случайного слова с файла
 def get_word() -> str:
-    rus_letters = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"
     try:
         with open (file_path, encoding="utf-8") as f:
             words = f.read().split()
@@ -135,10 +141,7 @@ def is_valid_letter(guessed_letters: list, missed_letters: list) -> str:
     while True:
         user_input = input("Введите кириллическую букву: ").upper()
 
-        if user_input not in ["А", "Б", "В", "Г", "Д", "Е", "Ё", "Ж", "З", "И", 
-                              "Й", "К", "Л", "М", "Н", "О", "П", "Р", "С", "Т", "У", 
-                              "Ф", "Х", "Ц", "Ч", "Ш", "Щ", "Ъ", "Ы", "Ь", "Э", "Ю", "Я"
-                              ]:
+        if user_input not in alphabet_list:
             print("Вы ввели не кириллическую букву!")
         elif user_input in guessed_letters:
             print("Вы уже называли эту букву!")
