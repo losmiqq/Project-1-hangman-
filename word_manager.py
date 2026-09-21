@@ -7,7 +7,7 @@ BASE_DIR = Path(__file__).resolve().parent
 file_path = BASE_DIR / "gamewords.txt"
 
 
-def get_word() -> None | str:
+def get_word():
     try:
         with open (file_path, encoding="utf-8") as f:
             words = f.read().split()
@@ -15,7 +15,7 @@ def get_word() -> None | str:
                 print("Файл оказался пустым(")
                 return None
 
-            valid_words = []
+            valid_words: list[str] = []
 
             for word in words:
                 word = word.upper()
