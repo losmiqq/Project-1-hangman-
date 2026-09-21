@@ -1,5 +1,5 @@
 from game import play, choose
-from get_word import get_word
+from word_manager import get_word
 
 
 def main():
