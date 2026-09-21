@@ -31,7 +31,7 @@ def is_valid_letter(guessed_letters: list, missed_letters: list) -> str:
 
 
 
-def play(word: str):
+def play(word: str) -> None:
     guessed = False
     guessed_letters = []
     missed_letters = []
