@@ -53,7 +53,7 @@ project/
 
 Clone the repository and run:
 
-`main.py`
+python `main.py`
 
 ## How to Play
 
