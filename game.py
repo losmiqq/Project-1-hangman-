@@ -38,7 +38,7 @@ def play(word: str) -> None:
     print("Добро пожаловать в игру 'Виселица'!")
 
 
-    while len(missed_letters) < 6:
+    while len(missed_letters) < tries:
         print(display_hangman(len(missed_letters)))
         print(word_update(word, guessed_letters))
         print(f"Кол-во ошибок: {len(missed_letters)}")
