@@ -50,7 +50,7 @@ def play(word: str) -> None:
             if word_update(word, guessed_letters).count("_") == 0:
                 print(word)
                 print("Поздравляем, вы угадали слово! Загаданное слово было:", word)
-                break
+                return
 
         else:
             missed_letters.add(user_input)
