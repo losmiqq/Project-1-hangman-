@@ -1,5 +1,5 @@
 from utils import display_hangman, word_update
-from constants import alphabet_list
+from constants import alphabet_list, tries
 
 
 
@@ -16,7 +16,7 @@ def choose() -> bool:
 
 
 
-def valid_letter(guessed_letters: list, missed_letters: list) -> str:
+def valid_letter(guessed_letters: list, missed_letters: set) -> str:
     while True:
         user_input = input("Введите кириллическую букву: ").upper()
 
@@ -33,16 +33,15 @@ def valid_letter(guessed_letters: list, missed_letters: list) -> str:
 
 def play(word: str) -> None:
     guessed_letters = []
-    missed_letters = []
-    mistakes = 0
+    missed_letters = set()
 
     print("Добро пожаловать в игру 'Виселица'!")
 
 
-    while mistakes < 6:
-        print(display_hangman(mistakes))
+    while len(missed_letters) < 6:
+        print(display_hangman(len(missed_letters)))
         print(word_update(word, guessed_letters))
-        print(f"Кол-во ошибок: {mistakes}")
+        print(f"Кол-во ошибок: {len(missed_letters)}")
         user_input = valid_letter(guessed_letters, missed_letters)
 
         if user_input in word:
@@ -54,9 +53,8 @@ def play(word: str) -> None:
                 break
 
         else:
-            mistakes += 1
-            missed_letters.append(user_input)
+            missed_letters.add(user_input)
 
-    print(display_hangman(mistakes))
-    print(f"Кол-во ошибок: {mistakes}")
+    print(display_hangman(len(missed_letters)))
+    print(f"Кол-во ошибок: {len(missed_letters)}")
     print("Вы проиграли! Загаданное слово было:", word)
