@@ -2,7 +2,7 @@ from game import play, choose
 from word_manager import get_word
 
 
-def main():
+def main() -> None:
     while True:
         if choose():
             word = get_word()
