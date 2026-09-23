@@ -1,6 +1,6 @@
 import random as r
 from pathlib import Path
-from constants import alphabet_list
+from constants import ALPHABET_LIST
 
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -19,7 +19,7 @@ def get_word() -> None | str:
 
             for word in words:
                 word = word.upper()
-                if len(word) > 4 and all(letter in alphabet_list for letter in word):
+                if len(word) > 4 and all(letter in ALPHABET_LIST for letter in word):
                     valid_words.append(word)
 
             if not valid_words:
