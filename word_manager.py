@@ -4,12 +4,12 @@ from constants import ALPHABET_LIST
 
 
 BASE_DIR = Path(__file__).resolve().parent
-file_path = BASE_DIR / "gamewords.txt"
+FILE_PATH = BASE_DIR / "gamewords.txt"
 
 
 def get_word() -> None | str:
     try:
-        with open (file_path, encoding="utf-8") as f:
+        with open (FILE_PATH, encoding="utf-8") as f:
             words = f.read().split()
             if not words:
                 print("Файл оказался пустым(")
