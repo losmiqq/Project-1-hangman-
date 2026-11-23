@@ -2,8 +2,6 @@ from utils import display_hangman, word_update
 from constants import ALPHABET_LIST, TRIES
 
 
-
-
 def choose() -> bool:
     while True:
         user_choice = input("Начать новую игру/Выйти (Start/Exit): ")
@@ -13,7 +11,6 @@ def choose() -> bool:
             return False
         else:
             print("Вы ввели неправильный ответ")
-
 
 
 def valid_letter(guessed_letters: set, missed_letters: set) -> str:
@@ -28,7 +25,6 @@ def valid_letter(guessed_letters: set, missed_letters: set) -> str:
             print("Этой буквы нету в слове, вы ее уже называли")
         else:
             return user_input
-
 
 
 def play(word: str) -> None:

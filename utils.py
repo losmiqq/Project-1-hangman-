@@ -1,7 +1,5 @@
-
-
 def display_hangman(mistakes: int) -> str:
-    stages = [
+   stages = [
         # 0 ошибок
         '''
            --------
@@ -80,10 +78,9 @@ def display_hangman(mistakes: int) -> str:
         '''
     ]
 
-    return stages[mistakes]
+   return stages[mistakes]
 
 
-# Состояние загаданного слова
 def word_update(word: str, guessed_letters: set) -> str:
-    result = "".join([i if i in guessed_letters else '_' for i in word])
-    return result
+   result = "".join([i if i in guessed_letters else '_' for i in word])
+   return result
