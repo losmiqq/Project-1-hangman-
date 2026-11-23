@@ -84,6 +84,6 @@ def display_hangman(mistakes: int) -> str:
 
 
 # Состояние загаданного слова
-def word_update(word: str, guessed_letters: list) -> str:
+def word_update(word: str, guessed_letters: set) -> str:
     result = "".join([i if i in guessed_letters else '_' for i in word])
     return result

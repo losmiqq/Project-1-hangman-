@@ -16,7 +16,7 @@ def choose() -> bool:
 
 
 
-def valid_letter(guessed_letters: list, missed_letters: set) -> str:
+def valid_letter(guessed_letters: set, missed_letters: set) -> str:
     while True:
         user_input = input("Введите кириллическую букву: ").upper()
 
@@ -32,7 +32,7 @@ def valid_letter(guessed_letters: list, missed_letters: set) -> str:
 
 
 def play(word: str) -> None:
-    guessed_letters = []
+    guessed_letters = set()
     missed_letters = set()
 
     print("Добро пожаловать в игру 'Виселица'!")
@@ -45,7 +45,7 @@ def play(word: str) -> None:
         user_input = valid_letter(guessed_letters, missed_letters)
 
         if user_input in word:
-            guessed_letters.append(user_input)
+            guessed_letters.add(user_input)
             print("Верно! Буква", user_input, "есть в слове.")
             if word_update(word, guessed_letters).count("_") == 0:
                 print(word)
