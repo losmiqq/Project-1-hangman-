@@ -46,7 +46,7 @@ def play(word: str) -> None:
 
         if user_input in word:
             guessed_letters.add(user_input)
-            print("Верно! Буква", user_input, "есть в слове.")
+            print(f"Верно! Буква {user_input} есть в слове.")
             if word_update(word, guessed_letters).count("_") == 0:
                 print(word)
                 print("Поздравляем, вы угадали слово! Загаданное слово было:", word)
