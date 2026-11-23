@@ -18,7 +18,7 @@ def choose() -> bool:
 
 def valid_letter(guessed_letters: set, missed_letters: set) -> str:
     while True:
-        user_input = input("Введите кириллическую букву: ").upper()
+        user_input = input("Введите кириллическую букву: ").upper().strip()
 
         if user_input not in ALPHABET_LIST:
             print("Вы ввели не кириллическую букву!")
